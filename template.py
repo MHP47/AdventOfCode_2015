@@ -1,11 +1,11 @@
 from utils import *
 
 
-def part_1(p_Input):
+def part_1(p_Input: str):
     pass
 
 
-def part_2(p_Input):
+def part_2(p_Input: str):
     pass
 
 
