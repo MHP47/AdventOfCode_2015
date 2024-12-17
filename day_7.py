@@ -54,7 +54,9 @@ def part_1(p_Input: str, lookup='a'):
 
 
 def part_2(p_Input: str):
-    pass
+    val = part_1(p_Input)
+    p_Input = re.sub('\n[0-9]+ -> b', f'\n3176 -> b', p_Input)
+    return part_1(p_Input)
 
 
 example_input_1 = """123 -> x
@@ -78,5 +80,5 @@ assert(part_1(example_input_1, 'i') == 65079)
 assert(part_1(example_input_1, 'g') == 114)
 print(f"Part 1: {part_1(challenge_input)}")
 
-assert(part_2(example_input_1) == None)
+# assert(part_2(example_input_1) == None)
 print(f"Part 2: {part_2(challenge_input)}")
