@@ -9,7 +9,10 @@ def part_1(p_Input: str):
 
 
 def part_2(p_Input: str):
-    pass
+    return sum(
+        2 + x.count('"') + x.count('\\')
+        for x in p_Input.strip().splitlines()
+    )
 
 
 example_input_1 = '''""
@@ -22,5 +25,5 @@ challenge_input = Input('8')
 assert(part_1(example_input_1) == 12)
 print(f"Part 1: {part_1(challenge_input)}")
 
-assert(part_2(example_input_1) == None)
+assert(part_2(example_input_1) == 19)
 print(f"Part 2: {part_2(challenge_input)}")
