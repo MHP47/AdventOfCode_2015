@@ -20,7 +20,25 @@ def part_1(p_Input: str):
 
 
 def part_2(p_Input: str):
-    pass
+    pairings = dict()
+    for arrangement in p_Input.strip().splitlines():
+        person_a, *_, person_b = arrangement.split()
+        person_b = person_b[:-1]
+        happiness = next(iter(parse_ints(arrangement))) or 0
+        happiness *= 1 if 'gain' in arrangement else -1
+        pairings[(person_a, person_b)] = happiness
+
+    for person in {x for p in pairings for x in p}:
+        pairings[(person, 'self')] = 0
+        pairings[('self', person)] = 0
+
+    return max(
+        sum(
+            pairings[(a,b)] + pairings[(b,a)]
+            for a,b in zip(seating, seating[1:] + (seating[0],))
+        )
+        for seating in itertools.permutations({x for p in pairings for x in p})
+    )
 
 
 example_input_1 = """Alice would gain 54 happiness units by sitting next to Bob.
@@ -41,5 +59,5 @@ challenge_input = Input('13')
 assert(part_1(example_input_1) == 330)
 print(f"Part 1: {part_1(challenge_input)}")
 
-assert(part_2(example_input_1) == None)
+# assert(part_2(example_input_1) == None)
 print(f"Part 2: {part_2(challenge_input)}")
